@@ -40,6 +40,7 @@ export class FileManagerComponent {
       }
     }
   }
+  
   downloadSelectedFiles() {
     const selectedFilesInfo = this.selectedFiles.map(file => `${file.name} - ${file.device} - ${file.path}`).join('\n');
     alert(`Selected Files:\n${selectedFilesInfo}`);
