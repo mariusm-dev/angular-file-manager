@@ -1,0 +1,31 @@
+<table>
+    <tr class="header">
+        <td><input type="checkbox" (change)="toggleSelectAll()" [checked]="selectAllChecked" [indeterminate]="selectAllIndeterminated"></td>
+        <td *ngIf="selectedFiles.length === 0">None Selected</td>
+        <td *ngIf="selectedFiles.length !== 0">Selected {{selectedFiles.length}}</td>
+        <td colspan="3">
+            <button class="downloadBtn" [disabled]="!canBeDownloaded()" (click)="downloadSelectedFiles()">
+                <i class="fa-solid fa-download"></i>
+                Download Selected
+            </button>
+        </td>
+    </tr>
+    <tr class="header">
+        <td></td>
+        <td>Name</td>
+        <td>Device</td>
+        <td>Path</td>
+        <td>Status</td>
+    </tr>
+    <tbody>
+        <tr *ngFor="let file of files" [class.selected]="selectedFiles.includes(file)" (click)="toggleSelectFile(file)">
+            <td>
+                <input type="checkbox" [checked]="selectedFiles.includes(file)">
+            </td>
+            <td>{{ file.name }}</td>
+            <td>{{ file.device }}</td>
+            <td>{{ file.path }}</td>
+            <td class="status" [class.available] ="file.status == 'available'">{{ file.status }}</td>
+        </tr>
+    </tbody>
+</table>
